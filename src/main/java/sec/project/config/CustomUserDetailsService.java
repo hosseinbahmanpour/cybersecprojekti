@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public void init() {
         Account account = new Account();
         account.setUsername("ted");
-        account.setPassword("$2a$10$nKOFU.4/iK9CqDIlBkmMm.WZxy2XKdUSlImsG8iKsAP57GMcXwLTS");
+        account.setPassword("password");
         accountRepository.save(account);
     }
 
