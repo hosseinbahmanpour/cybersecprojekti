@@ -1,0 +1,2 @@
+1. CSRF is disabled in the Spring security configuration.
+2. Values are hidden in html, but still accessible otherwise.
