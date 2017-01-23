@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public void init() {
         // this data would typically be retrieved from a database
         this.accountDetails = new TreeMap<>();
-        this.accountDetails.put("ted", "pass");
+        this.accountDetails.put("ted", "password");
     }
 
     @Override
