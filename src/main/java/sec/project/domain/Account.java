@@ -26,4 +26,5 @@ public class Account extends AbstractPersistable<Long> {
     public void setPassword(String password) {
         this.password = password;
     }
+    
 }
