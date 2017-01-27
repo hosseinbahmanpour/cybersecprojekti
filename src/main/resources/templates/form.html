@@ -9,10 +9,10 @@
         
         <p>Sorry! The event is full at the moment, and signup is closed. Don't bother showing up because without your name on the list you can not get in.</p>
 
-        <form id="form" class="hidden" action="#" th:action="@{/form}" method="POST">
-            <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
-            <p><label for="address">Address</label>: <input type="text" name="address" id="address"/></p>
-            <p><input type="submit" value="Submit" /></p>
+        <form th:class="hidden" th:action="@{/form}" method="POST">
+            <p>Name:</p><input type="text" placeholder="name" name="name" id="name"/>
+            <p>Address:</p><input type="text" placeholder="address" name="address" id="address"/>
+            <p></p><input type="submit" value="Submit" />
         </form>
 
         <p></p>
