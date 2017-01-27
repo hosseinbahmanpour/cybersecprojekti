@@ -6,8 +6,10 @@
     <body>
 
         <h1>Sign up to the event using this form</h1>
+        
+        <p>Sorry! The event is full at the moment, and you can not sign up</p>
 
-        <form action="#" th:action="@{/form}" method="POST">
+        <form action="#" th:action="@{/form}" method="POST" class="hidden">
             <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
             <p><label for="address">Address</label>: <input type="text" name="address" id="address"/></p>
             <p><input type="submit" value="Submit" /></p>
