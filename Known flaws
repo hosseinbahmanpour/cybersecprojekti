@@ -1,3 +1,15 @@
-1. CSRF is disabled in the Spring security configuration.
-2. Values are hidden in html, but still accessible otherwise.
-3. Passwords are not encrypted
+Here is the code to a very simple "signup" webapp, which is made with Spring Framework on Java, and has major security flaws.
+
+Link to github sourcecode:
+https://github.com/hosseinbahmanpour/cybersecprojekti
+
+When checking out the sourcecode, the first thing that we might notice is how CSRF is disabled in the Spring security configuration. The SPring framework offers automatic security configurations to keep applications safe, but this will make the application heavier and so it is possible to disable some of these built in protocols. This is highly unrecomenneded for any application that handles user details, has users who give the app sensitive data and so forth. 
+
+Also in the configuration we notice that passwords are not encrypted. Spring offers libraries for automatically encyrpting passwords, but they have not been used. Since the application seems to have username and password requirements for access, it should have these passwords encrypted as well.
+
+In the templates, in form.html values are hidden in html, but still accessible otherwise. An evil user can easily disable the hide and reveal the form that is hidden behind it, thus being able to "singup" even though that should not be possible in this simple app which seems to only have this one functon. Major flaw.
+
+
+Important information is not really protected in anyway, and a hacker would immediately notice after using the "signup" that he is redirected to an url that has a running serial number. It doesn't take an evil genius to easily access the sensitive personal details of any other user of the flawed "signup" app.
+
+A final flaw is the ability to insert scripts or html to the signup form. This grants evil users the ability to wreak havoc on innocent civilians, by fooling them to click on things that can harm their computers, their finances, or their souls.
