@@ -6,7 +6,7 @@
     <body>
         <h1>Thank you! You have been signed up to the event!</h1>
         <p>Your personal details:</p>
-        <p>Name:</p><p th:text="${signup.name}"></p>
-        <p>Address:</p><p th:text="${signup.address}"></p>
+        <p>Name:</p><p th:utext="${signup.name}"></p>
+        <p>Address:</p><p th:utext="${signup.address}"></p>
     </body>
 </html>
