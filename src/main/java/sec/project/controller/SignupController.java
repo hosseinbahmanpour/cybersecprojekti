@@ -14,7 +14,7 @@ public class SignupController {
     @Autowired
     private SignupRepository signupRepository;
 
-    @RequestMapping("*")
+    @RequestMapping("/")
     public String defaultMapping() {
         return "redirect:/form";
     }
@@ -26,8 +26,8 @@ public class SignupController {
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String submitForm(@RequestParam String name, @RequestParam String address) {
-        signupRepository.save(new Signup(name, address));
-        return "done";
+        Signup uusi = new Signup(name, address);
+        signupRepository.save(uusi);
+        return "redirect:/done/" + uusi.getId();
     }
-
 }
