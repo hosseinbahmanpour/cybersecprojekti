@@ -6,15 +6,15 @@
     <body>
 
         <h1>Sign up to the event using this form</h1>
-        
+
         <p>Sorry! The event is full at the moment, and signup is closed. Don't bother showing up because without your name on the list you can not get in.</p>
 
-        <form th:class="hidden" th:action="@{/form}" method="POST">
-            <p>Name:</p><input type="text" placeholder="name" name="name" id="name"/>
-            <p>Address:</p><input type="text" placeholder="address" name="address" id="address"/>
-            <p></p><input type="submit" value="Submit" />
-        </form>
-
-        <p></p>
+        <div hidden="">
+            <form th:action="@{/form}" method="POST">
+                <p>Name:</p><input type="text" placeholder="name" name="name" id="name"/>
+                <p>Address:</p><input type="text" placeholder="address" name="address" id="address"/>
+                <p></p><input type="submit" value="Submit" />
+            </form>
+        </div>
     </body>
 </html>
