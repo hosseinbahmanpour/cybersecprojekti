@@ -3,13 +3,69 @@ Here is the code to a very simple "signup" webapp, which is made with Spring Fra
 Link to github sourcecode:
 https://github.com/hosseinbahmanpour/cybersecprojekti
 
-When checking out the sourcecode, the first thing that we might notice is how CSRF is disabled in the Spring security configuration. The SPring framework offers automatic security configurations to keep applications safe, but this will make the application heavier and so it is possible to disable some of these built in protocols. This is highly unrecomenneded for any application that handles user details, has users who give the app sensitive data and so forth. 
+When checking out the sourcecode, the first thing that we might notice is how Cross Site Request Forgery (CSRF) is disabled in the Spring security configuration. The SPring framework offers automatic security configurations to keep applications safe, but this will make the application heavier and so it is possible to disable some of these built in protocols. This is highly unrecomenneded for any application that handles user details, has users who give the app sensitive data and so forth. 
+
+Problem: Cross Site Request Forgery
+How to fix:
+1. Open cybersecuritybase-project
+2. Go to Source Packages
+3. Go to sec.project.config
+4. Open SecurityConfiguration.java
+5. Delete line 17 -->> http.csrf().disable();
+6. Done
+
 
 Also in the configuration we notice that passwords are not encrypted. Spring offers libraries for automatically encyrpting passwords, but they have not been used. Since the application seems to have username and password requirements for access, it should have these passwords encrypted as well.
 
+Problem: Security Misconfiguration
+How to fix:
+1. Open cybersecuritybase-project
+2. Go to Source Packages
+3. Go to sec.project.config
+4. Open SecurityConfiguration.java
+5. Add the following lines of code to the bottom of the code:
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+6. Import the necessary imports
+7. Done
+
 In the templates, in form.html values are hidden in html, but still accessible otherwise. An evil user can easily disable the hide and reveal the form that is hidden behind it, thus being able to "singup" even though that should not be possible in this simple app which seems to only have this one functon. Major flaw.
 
+Problem: Using Components with Known Vulnerabilities
+How to fix:
+1. Open cybersecuritybase-project
+2. Go to Other Sources
+3. Go to src/main/resources
+4. Go to templates
+5. Open form.html
+6. Remove the text "hidden" on line 12
+7. Done
 
 Important information is not really protected in anyway, and a hacker would immediately notice after using the "signup" that he is redirected to an url that has a running serial number. It doesn't take an evil genius to easily access the sensitive personal details of any other user of the flawed "signup" app.
 
-A final flaw is the ability to insert scripts or html to the signup form. This grants evil users the ability to wreak havoc on innocent civilians, by fooling them to click on things that can harm their computers, their finances, or their souls.
+Problem: Sensitive data exposure
+How to fix:
+1. Open cybersecuritybase-project
+2. Go to Source Packages
+3. Go to sec.project.domain
+4. Open Singup.java
+5. Remove the code from line 7, and replace it with the following code
+    public class Signup extends AbstractPersistable<UUID> {
+6. Import the necessary imports
+7. Done
+
+A final flaw is the ability to insert scripts or html to the signup form. This grants evil users the ability to wreak havoc on innocent civilians, by fooling them to click on things that can harm their computers, their finances, or their souls. This flaw is known as Cross Site Scripting or XSS for short.
+
+Problem: Cross Site Scripting
+How to fix:
+1. Open cybersecuritybase-project
+2. Go to Other Sources
+3. Go to src/main/resources
+4. Go to templates
+5. Open done.html
+6. Remove the contents of line 9 and 10, and replace with the following code, to replace the utext with plain old text:
+    <p>Name:</p><p th:text="${signup.name}"></p>
+    <p>Address:</p><p th:text="${signup.address}"></p>
+7. Done
